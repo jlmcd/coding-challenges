@@ -10,14 +10,14 @@ class MyBot extends Bot {
   }
   
   start() {
-    // this.findCorner()
+    this.findCorner()
     this.rotateTo(270)
     this.fireLoop()
   }
   
   async onCrash(enemy) {
-    console.log('enemy', enemy);
-    const location = await this.getLocation()
+    // console.log('enemy', enemy);
+    // const location = await this.getLocation()
     this.forward(100)
   }
   
