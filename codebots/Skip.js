@@ -6,7 +6,7 @@ class MyBot extends Bot {
   init(id, name) {
     this.name = name
     this.id = id
-    this.setColor(Bot.RED)
+    this.setColor(Bot.PINK)
   }
   
   start() {
