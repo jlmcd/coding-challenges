@@ -32,6 +32,7 @@ class MyBot extends Bot {
   async triangulate() {
     const field = await this.scan()
     const myLocation = await this.getLocation()
+    const myRotation = await this.getRotation()
     const foundEm = field.bots.filter(bot => bot.id !== this.id && bot.alive === true)
     const target = foundEm[0]
     const {location:enemyLocation} = target
@@ -39,16 +40,16 @@ class MyBot extends Bot {
     const relativeLocation = this.calculateRelativeLocation(myLocation, enemyLocation)
     switch (relativeLocation) {
       case 'bottomRight':
-        angle += 90
+        angle = (angle + 90 - myRotation - 90)
         break
       case 'bottomLeft':
-        angle = 270 - angle
+        angle = ((270 - angle) - myRotation - 90)
         break
-      case 'topLeft': 
-        angle -= 90
+      case 'topLeft':
+        angle = (angle - 90 - myRotation - 90)
         break
-      default: 
-        angle = (90 - angle)
+      default:
+        angle = ((90 - angle) - myRotation - 90)
     }
     this.rotateBarrelTo(angle)
   }
